@@ -1,0 +1,99 @@
+import random
+#Random word selector
+word_list = ['balloon', 'camel', 'phone', 'computer', "snake", "bicycle"]
+print('''
+ _                                             
+| |                                            
+| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+| | | | (_| | | | | (_| | | | | | | (_| | | | |
+|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                    __/ |                      
+                   |___/                       
+''')
+stages = ['''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
+
+
+display =[]
+lives = 6
+letters_guessed = ''
+word = (random.choice(word_list))
+length_word = int(len(word))
+for n in word:
+    display.append('_')
+print(display)
+while "_" in display and lives > 0:
+    guess = input('What letter would you like to guess?\n').lower()
+    number = 0
+    for letter in word:
+        number += 1
+        if guess == letter:
+            print(f'{guess} is correct!')
+            display[number-1] = letter
+    if guess not in word:
+        lives -= 1
+        print(stages[lives])
+        print(f'{guess} is not in the word!')
+    letters_guessed += guess + ' '
+    print(display)
+    print(f'Letters guessed: {letters_guessed}')
+    print(' ')
+if "_" not in display:
+    print(f'You win, the word was {word}')
+if lives == 0:
+    print('You ran out of lives! You Lose')
