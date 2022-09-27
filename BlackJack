@@ -1,12 +1,21 @@
+import random
+
+from art import logo
+from replit import clear
 
 restart = True
 while restart:
+  clear()
+  print(logo)
   
   cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
   def deal_card():
     card = int(random.choice(cards))
     return card
   deal_card()
+  
+  
+  #Hint 5: Deal the user and computer 2 cards each using deal_card() and append().
   user_cards = []
   dealer_cards = []
   
@@ -53,7 +62,7 @@ while restart:
         while dealer_score < 17:
           dealer_cards.append(deal_card())
           dealer_score = calculate_score(dealer_cards)
-          print(f"Dealer not yet at a total of 17 so draws another card: {dealer_cards.pop}. Dealer cards are now {dealer_cards}, giving a total of {dealer_score}.")
+          print(f"Dealer not yet at a total of 17 so draws another card. Dealer cards are now {dealer_cards}, giving a total of {dealer_score}.")
           print('')
         if dealer_score > 21:
           print("Dealer went Bust, You win")
