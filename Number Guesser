@@ -1,0 +1,36 @@
+# Easy or Hard mode selection - assign lives
+lives = 0
+print('''
+AIM:
+     The computer is thinking of a number between 1-100, you need to try to work out what it is!
+     
+     ''')
+easy_or_hard = input("Please select mode by typing 'easy' or 'hard'\n").lower()
+if easy_or_hard == "easy":
+    lives = 10
+    print(f"You chose easy mode, you start with {lives} lives")
+elif easy_or_hard == "hard":
+    lives = 4
+    print(f"You chose hard mode, you start with {lives} lives")
+elif easy_or_hard != "easy" or easy_or_hard != "hard":
+    print("Invalid input")
+# Create play loop, while lives > 0 and number not guessed: compare numbers, give feedback, remove life
+correctly_guessed = False
+while lives > 0 and correctly_guessed == False:
+    next_guess = int(input("Please guess a number between 1 - 100\n"))
+    if next_guess > computer_number:
+        lives -= 1
+        print(f"Your guess of {next_guess} is too high.")
+        print(f"Remaining lives = {lives}")
+        print('')
+    elif next_guess < computer_number:
+        lives -= 1
+        print(f"Your guess of {next_guess} is too low.")
+        print(f"Remaining lives = {lives}")
+        print('')
+    elif next_guess == computer_number:
+        print(f"You guess correctly! The computers number was {computer_number}")
+        correctly_guessed = True
+
+if lives == 0:
+    print("You ran out of lives, GAME OVER")
