@@ -1,0 +1,59 @@
+#import data
+from game_data import data
+from art import logo
+from art import vs
+import random
+from replit import clear
+repeat = True
+while repeat:
+  #Assign person A & B
+  score = 0
+  win = True
+  person_a = random.choice(data)
+  person_b = random.choice(data)
+    # Ask user to select A or B
+  while win:
+    a_or_b = input(f'''
+    {logo}
+    Compare A: {(person_a['name'])}, a {(person_a['description'])}, from {(person_a['country'])}
+    {vs}
+    Compare B: {(person_b['name'])}, a {(person_b['description'])}, from {(person_b['country'])}
+    Who has more follower? 'A' or 'B'
+    ''').lower()
+    # Compare A & B values, which is higher?
+    if person_a["follower_count"] > person_b["follower_count"]:
+      higher = person_a
+    elif person_a["follower_count"] < person_b["follower_count"]:
+      higher = person_b
+    else:
+      pass
+    
+    if a_or_b == 'a':
+      user_selection = person_a
+    elif a_or_b == 'b':
+      user_selection = person_b
+    else:
+      pass
+    #Is user correct?
+
+#Yes >> +1 score, B becomes A, select new B, repeat 
+
+    if user_selection == higher:
+      score +=1
+      person_a = person_b
+      clear()
+      print(logo)
+      print(f"You're right! Current Score = {score}")
+      person_b = random.choice(data)
+    elif user_selection != higher:
+      print(f"Wrong! score = {score}")
+      win = False
+      again = input("Do you want to play again? 'yes' or 'no'\n").lower()
+      if again == "no":
+        repeat = False
+      clear()
+
+  
+#Is user correct?
+
+#Yes >> +1 score, B becomes A, select new B, repeat 
