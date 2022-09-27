@@ -1,0 +1,71 @@
+
+restart = True
+while restart:
+  
+  cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+  def deal_card():
+    card = int(random.choice(cards))
+    return card
+  deal_card()
+  user_cards = []
+  dealer_cards = []
+  
+  for n in range(0,2):
+    user_cards.append(deal_card())
+    dealer_cards.append(deal_card())
+  
+    
+  def calculate_score(list):
+    score = sum(list)
+    #Blackjack 
+    if len(list) == 2 and sum(list) == 21:
+      score = 0
+    if score > 21:
+      if 11 in list:
+        list.remove(11)
+        list.append(1)
+        score = sum(list)
+    return score
+    
+  replay = True
+  while replay:
+    user_score = calculate_score(user_cards)
+    dealer_score = calculate_score(dealer_cards)
+    if dealer_score == 0:
+      print("You lose, the dealer has blackjack")
+      replay = False
+    elif user_score == 0:
+      print("You win, you got blackjack!")
+      replay = False
+    elif user_score > 21:
+      print(f"Bust, you went over 21")
+      replay = False
+    else:
+      print(f"Your cards are {user_cards}, giving a total of {user_score}.")
+      print(f"Dealer's first card is {dealer_cards[0]}")
+      again = input("Do you want to draw another card? 'y' or 'n'\n").lower()
+      if again == 'y':
+        user_cards.append(deal_card())
+      elif again == 'n' and user_score >= 17 :
+        replay = False
+        print(f"Your cards are {user_cards}, giving a total of {user_score}.")
+        print(f"Dealer cards are {dealer_cards}, giving a total of {dealer_score}.")
+        while dealer_score < 17:
+          dealer_cards.append(deal_card())
+          dealer_score = calculate_score(dealer_cards)
+          print(f"Dealer not yet at a total of 17 so draws another card: {dealer_cards.pop}. Dealer cards are now {dealer_cards}, giving a total of {dealer_score}.")
+          print('')
+        if dealer_score > 21:
+          print("Dealer went Bust, You win")
+        elif user_score > dealer_score:
+          print("You win!")
+        elif user_score < dealer_score:
+          print("You Lose!")
+        if user_score == dealer_score:
+          print("Draw")
+      else:
+        print('You need a minimum of 17, please draw another card')
+  play_again = input("Do you want to play again? 'y' or 'n'\n").lower()
+  if play_again == 'n':
+    restart = False
+        
