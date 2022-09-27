@@ -1,0 +1,31 @@
+#Selection sort algorithm
+def selection_sort(xs):
+    len_xs = int(len(xs)-1)
+    min_value = xs[0]
+    for i in range(0,len_xs):
+        if i < min_value:
+            min_value = xs[i]
+    for j in range(len_xs):
+        print(j)
+        min_value = xs[j]
+        for i in xs[j:len_xs]:
+            if i < min_value:
+                # find index of number to swap in
+                new_num_index = int(xs.index(i))
+                # memorise old number at index j
+                old_num = xs[j]
+                # assign new number to index j
+                xs[j] = i
+                # assign old number to index of swapped in number
+                xs[new_num_index] = old_num
+                min_value = xs[j]
+        if xs[len_xs] < xs[len_xs -1]:
+            x,y = xs[len_xs], xs[len_xs -1]
+            xs[len_xs], xs[len_xs - 1] = xs[len_xs -1], xs[len_xs]
+
+xs = [9,3,2,11,6,1,7,5,4,10,8]
+print(xs)
+selection_sort(xs)
+print(xs)
+
+print(all(xs[i] <= xs[i+1] for i in range(len(xs)-1)))
