@@ -13,9 +13,7 @@ while restart:
     card = int(random.choice(cards))
     return card
   deal_card()
-  
-  
-  #Hint 5: Deal the user and computer 2 cards each using deal_card() and append().
+
   user_cards = []
   dealer_cards = []
   
