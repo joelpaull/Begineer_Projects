@@ -23,9 +23,3 @@ def selection_sort(xs):
             x,y = xs[len_xs], xs[len_xs -1]
             xs[len_xs], xs[len_xs - 1] = xs[len_xs -1], xs[len_xs]
 
-xs = [9,3,2,11,6,1,7,5,4,10,8]
-print(xs)
-selection_sort(xs)
-print(xs)
-
-print(all(xs[i] <= xs[i+1] for i in range(len(xs)-1)))
